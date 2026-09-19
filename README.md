@@ -1,6 +1,3 @@
-# HackerRank Orchestrate
-
-Starter repository for the **HackerRank Orchestrate** 24-hour hackathon.
 
 ## Message Notification Router
 
@@ -40,26 +37,6 @@ Read [`problem_statement.md`](./problem_statement.md) for the full task spec, in
         └── audio/
 ```
 
----
-
-## What You Need to Build
-
-For every row in `dataset/messages.csv`, produce one row in `output.csv` with:
-
-| Column | Meaning |
-|---|---|
-| `message_id` | Incoming message ID |
-| `action` | One of `notify`, `digest`, or `mute` |
-| `message_type` | Best-fit message category |
-| `reason` | Short human-readable explanation |
-| `confidence` | Number from `0` to `1` |
-| `evidence_message_ids` | Historical message IDs used as evidence; write `none` if there is no useful evidence |
-
-Your system should make personalized decisions using the provided message, user, group, business, media, and historical interaction data.
-For image and voice-note messages, `images.csv` and `voice_notes.csv` only provide file paths; your system should inspect the media files themselves.
-
----
-
 ## Suggested Workflow
 
 1. Inspect `dataset/sample_messages.csv` to understand the expected output format.
@@ -86,45 +63,3 @@ If you use API keys or secrets, read them from environment variables. Never hard
 
 ---
 
-## Evaluation
-
-Your `output.csv` will be compared against hidden ground-truth labels.
-
-The scoring will consider:
-
-- correctness of `action`
-- correctness of `message_type`
-- usefulness and consistency of `reason`
-- whether `evidence_message_ids` point to relevant historical messages
-- reasonable confidence calibration
-
-Strong systems will combine retrieval, structured metadata, behavioral history, safety checks, OCR/ASR handling, and contextual reasoning.
-
----
-
-## Chat Transcript Logging
-
-This repo includes an [`AGENTS.md`](./AGENTS.md) file for AI coding tools. It asks compatible tools to append conversation summaries to:
-
-| Platform | Path |
-|---|---|
-| macOS / Linux | `$HOME/hackerrank_orchestrate_august26/log.txt` |
-| Windows | `%USERPROFILE%\hackerrank_orchestrate_august26\log.txt` |
-
-Upload this log as your chat transcript at submission time. Do not paste secrets into the chat.
-
----
-
-## Submission
-
-Submit the following files as instructed by HackerRank:
-
-1. **Code zip**: full runnable solution, prompts/configs, README, and any evaluation files.
-2. **Predictions CSV**: final `output.csv` for all rows in `dataset/messages.csv`.
-3. **Chat transcript**: the `log.txt` described above.
-
-Before submitting, confirm:
-
-- `output.csv` has one row per row in `dataset/messages.csv`.
-- `output.csv` has the exact required columns in the exact required order.
-- Your runnable code and setup instructions are included in `code.zip`.
